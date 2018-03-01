@@ -14,8 +14,9 @@ class adminlogin extends Controller {
     {
 
         $form = $_POST;
+
         $this->model->checkUser($form);
-        Model::sessionInit();
+        /*Model::sessionInit();
         $check=Model::sessionGet('userId');
 
         if($check==false){
@@ -23,7 +24,7 @@ class adminlogin extends Controller {
         }else{
             echo 'login success!';
             header('location:'.URL_SITE.'admindashboard');
-        }
+        }*/
 
 
 

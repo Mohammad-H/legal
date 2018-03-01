@@ -4,8 +4,8 @@ class admindashboard extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $level=Model::getUserLevel();
-        if($level!=1){header('location:'.URL_SITE.'adminlogin');}
+        /*$level=Model::getUserLevel();
+        if($level!=1){header('location:'.URL_SITE.'adminlogin');}*/
     }
 
     public function index()

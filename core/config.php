@@ -3,7 +3,7 @@
 
 defined('DRIVER') or define('DRIVER','mysql');
 defined('HOST') or define('HOST','localhost');
-defined('DATABASE_NAME') or define('DATABASE_NAME','law');
+defined('DATABASE_NAME') or define('DATABASE_NAME','legal');
 defined('USER_NAME') or define('USER_NAME','root');
 defined('PASSWORD') or define('PASSWORD','');
 defined('URL_SITE') or define('URL_SITE','http://localhost/legal/');

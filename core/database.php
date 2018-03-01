@@ -26,63 +26,6 @@ $capsule->setAsGlobal();
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
 
-function create_thumbnail($file, $pathToSave = '', $w, $h = '', $crop = FALSE)
-{
-
-    $new_height = $h;
-
-    list($width, $height) = getimagesize($file);
-
-    $r = $width / $height;
-
-    if ($crop) {
-        if ($width > $height) {
-            $width = ceil($width - ($width * abs($r - $w / $h)));
-        } else {
-            $height = ceil($height - ($height * abs($r - $w / $h)));
-        }
-        $newwidth = $w;
-        $newheight = $h;
-    } else {
-        if ($w / $h > $r) {
-            $newwidth = $h * $r;
-            $newheight = $h;
-        } else {
-            $newheight = $w / $r;
-            $newwidth = $w;
-        }
-    }
-
-    $what = getimagesize($file);
-
-    switch (strtolower($what['mime'])) {
-        case 'image/png':
-            $src = imagecreatefrompng($file);
-
-            break;
-        case 'image/jpeg':
-            $src = imagecreatefromjpeg($file);
-            break;
-        case 'image/gif':
-            $src = imagecreatefromgif($file);
-            break;
-        default:
-            //die();
-    }
-
-    if ($new_height != '') {
-        $newheight = $new_height;
-    }
-
-    $dst = imagecreatetruecolor($newwidth, $newheight);//the new image
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);//az function
-
-    imagejpeg($dst, $pathToSave, 95);//pish farz in tabe 75 darsad quality ast
-
-    return $dst;
-
-
-}
 
 class Model
 {
@@ -121,5 +64,45 @@ class Model
 
         return $userInfo[0]->access;
 
+    }
+
+    // encryption
+
+    public static function password_encrypt($password) {
+        // Tells PHP to use Blowfish with a "cost" of 10
+        $hash_format = "$2y$10$";
+        // Blowfish salts should be 22-characters or more
+        $salt_length = "1!2@3#4$5%6^7&8*9(10Am";
+        $salt = self::generate_salt($salt_length);
+        $format_and_salt = $hash_format . $salt;
+        $hash = crypt($password, $format_and_salt);
+        return $hash;
+    }
+
+    public static function generate_salt($length) {
+        // Not 100% unique, not 100% random, but good enough for a salt
+        // MD5 returns 32 characters
+        $unique_random_string = md5(uniqid(mt_rand(), true));
+
+        // Valid characters for a salt are [a-zA-Z0-9./]
+        $base64_string = base64_encode($unique_random_string);
+
+        // But not '+' which is valid in base64 encoding
+        $modified_base64_string = str_replace('+', '.', $base64_string);
+
+        // Truncate string to the correct length
+        $salt = substr($modified_base64_string, 0, $length);
+
+        return $salt;
+    }
+
+    public static function password_check($password, $existing_hash) {
+        // existing hash contains format and salt at start
+        $hash = crypt($password, $existing_hash);
+        if ($hash === $existing_hash) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
