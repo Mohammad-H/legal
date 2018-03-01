@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'IRSANS';
+    src: url(../fonts/IRANSansWeb.ttf)  format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+@media (min-width: 768px){
+    .navbar-header {
+        float: left !important;
+    }
+}
+body{
+    font-family: 'IRSANS',tahoma;
+    background-color: #f1f1f1;
+}
+.main{
+    text-align: center;
+    line-height: 1.5em;
+}
+.form-control{
+    height: 40px;
+}
+input[type="file"]{
+    max-width: 250px;margin: 0 auto;
+}
+.img-show{
+    position: relative;max-width: 300px;margin: 0 auto;
+}
+.img-show img{
+    width:100%;height:auto;background-color: #ccc;right: 0;left: 0;top: 0;bottom: 0;display: block;
+}
+.format-pic{color: red;font-size: 12px;}
+.clear{clear: both;}
+.two-img-show{max-width:500px;margin: 0 auto;}
+.two-img-show .img-part{text-align: center;width: 243px;float: right;margin: 0 2px;}

@@ -1,0 +1,9 @@
+Options -Indexes
+RewriteEngine on
+RewriteBase /legal/
+#RewriteRule ^public/images/(.*)\-([a-f0-9]+)\.(jpg|png|gif)/?$ public/images/$1.$3 [L]
+RewriteRule ^public/css/(.*)\-([a-f0-9]+)\.css/?$ public/css/$1.css [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

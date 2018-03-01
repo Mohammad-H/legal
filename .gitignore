@@ -1,0 +1,6 @@
+/.idea
+*.txt
+*.zip
+*.rar
+*.sql
+/vendor

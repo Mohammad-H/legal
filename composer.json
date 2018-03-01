@@ -1,0 +1,16 @@
+{
+    "require": {
+        "illuminate/database": "^5.5"
+    },
+    "autoload":{
+        "classmap":[
+            "model",
+            "controller"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
