@@ -42,10 +42,8 @@ class model_adminpost extends Eloquent {
                     echo "no";
                     die();
                 }
-
             }
         }
-
     }
 
     function editpost($post_id,$data = array(), $file = array())

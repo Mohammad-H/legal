@@ -33,5 +33,4 @@ class Controller {
         $this->model = new $classname;
     }
 
-
 }

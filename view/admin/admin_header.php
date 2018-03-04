@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+    <title>MEHRABANI-admin</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse bg-indigo">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><img src="public/admin/assets/images/logo_light.png" alt=""></a>
+        <a class="navbar-brand" href="index.html"></a>
 
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -181,7 +181,7 @@
                                 </div>
 
                                 <div class="media-body">
-                                    <a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch in <span class="text-semibold">Limitless</span> repository
+                                    <a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch in <span class="text-semibold">MEHRABANI</span> repository
                                     <div class="media-annotation">2 hours ago</div>
                                 </div>
                             </li>

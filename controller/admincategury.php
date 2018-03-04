@@ -30,6 +30,6 @@ class admincategury extends Controller {
         $getcat = $this->model->getcategury();
         //$getcatByid = $this->model->getcategury_by_id();
         $data = array('categury'=>$getcat);
-        $this->view('admin/post/categury/index',$data,1,1,"view/admin/admin_header.php","view/admin/admin_footer.php");
+        $this->view('admin/post/categury/index',$data,1,1,'view/admin/admin_header.php','view/admin/admin_footer.php');
     }
 }
