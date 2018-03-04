@@ -8,36 +8,33 @@ class model_adminlogin extends Eloquent {
 
     public function checkUser($form)
     {
+        if (empty($form['email']) || empty($form['password']))
+        {
+            die("email or password empty");
+        }
+
         $email = $form['email'];
         $password = $form['password'];
 
+        $result = self::where('email','=',$email)->first();
 
-        $result = DB::table('user')->where('email','=',$email)->first();
-        if($result) {
+        if($result)
+        {
             // found admin, now check password
-            if (Model::password_check($password, $result->password)) {
+            if (Model::password_check($password, $result->password))
+            {
                 // password matches
-                print_r_debug_die($result);
+                Model::sessionInit();
+                Model::sessionSet('userId',$result->id);
+                Model::sessionSet('userAccess',$result->access);
+//                print_r_debug_die($result);
             } else {
                 // password does not match
-                return false;
+                die("password not found");
             }
         }else{
             // email does not found
             die("not email");
         }
-
-//print_r($result[0]->id);die();
-        /*if(sizeof($result)>0 and !empty($email) and !empty($password)){
-            echo 'correct user pass!';
-            Model::sessionInit();
-            Model::sessionSet('userId',$result[0]->id);
-
-        }
-        else{
-            echo 'wrong user pass!';
-        }*/
-
-
     }
 }

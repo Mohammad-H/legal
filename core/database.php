@@ -72,7 +72,7 @@ class Model
         // Tells PHP to use Blowfish with a "cost" of 10
         $hash_format = "$2y$10$";
         // Blowfish salts should be 22-characters or more
-        $salt_length = "1!2@3#4$5%6^7&8*9(10Am";
+        $salt_length = 22;
         $salt = self::generate_salt($salt_length);
         $format_and_salt = $hash_format . $salt;
         $hash = crypt($password, $format_and_salt);
