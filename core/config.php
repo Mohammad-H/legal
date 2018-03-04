@@ -60,15 +60,15 @@ function pagination($url,$pageindex,$countpost,$class="practice-v3-paginat"){
                     <li class="active"><a href="javascript:void(0);"><?= $i ?></a></li>
                 <?php } else{ ?>
                     <li class=""><a href="<?= $url ?><?= $i ?>"><?= $i ?></a></li>
-                <?php } ?>
-            <?php } ?>
+
+            <?php } } ?>
             <li> <a href="javascript:void(0);"> ... </a></li>
             <?php if ($pageindex == $countpost){ ?>
                 <li class="active"> <a href="javascript:void(0);"><?= $countpost ?></a></li>
-            <?php }else{ ?>
+            <?php } else{ ?>
                 <li class=""> <a href="<?= $url ?><?= $countpost ?>"><?= $countpost ?></a></li>
-            <?php } ?>
-            <?php if ($pageindex != $countpost){ ?>
+
+            <?php } if ($pageindex != $countpost){ ?>
                 <li> <a href="<?= $url ?><?= $pageindex+1 ?>"><!--<i class="fa fa-long-arrow-right"></i>-->بعدی</a></li>
             <?php } ?>
         </ul>
