@@ -18,7 +18,6 @@ class app{
                 $this->method = $url[1];
                 unset($url[1]);
             }
-
             $this->params = array_values($url);
         }
         $controlerUrl = 'controller/' . $this->controller . '.php';
