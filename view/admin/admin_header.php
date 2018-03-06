@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="rtl" xmlns="http://www.w3.org/1999/html">
 <head>
     <base href="<?= URL_SITE ?>">
     <meta charset="utf-8">
@@ -29,8 +29,88 @@
 
     <script type="text/javascript" src="public/admin/assets/js/core/app.js"></script>
     <!-- <script type="text/javascript" src="public/admin/assets/js/pages/datatables_api.js"></script> -->
-    <script type="text/javascript" src="public/admin/assets/js/pages/datatables_data_sources.js"></script>
-    
+<!--    <script type="text/javascript" src="public/admin/assets/js/pages/datatables_data_sources.js"></script>-->
+    <script type="text/javascript">
+    $(function() {
+
+
+    // Table setup
+    // ------------------------------
+
+    // Setting datatable defaults
+    $.extend( $.fn.dataTable.defaults, {
+    autoWidth: false,
+    columnDefs: [{
+    orderable: false,
+    width: '100px',
+    targets: [ 5 ]
+    }],
+    dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+    language: {
+    search: '<span>Filter:</span> _INPUT_',
+    searchPlaceholder: 'Type to filter...',
+    lengthMenu: '<span>Show:</span> _MENU_',
+    paginate: { 'first': 'First', 'last': 'Last', 'next': '&larr;', 'previous': '&rarr;' }
+    },
+    drawCallback: function () {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+    },
+    preDrawCallback: function() {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+    }
+    });
+
+    // AJAX sourced data
+    $('.datatable-ajax').dataTable({
+        /*"processing": true,
+        "serverSide": true,*/
+    ajax: 'http://localhost/legal/admindashboard/getAjax',
+
+        columns: [
+            { data: "user_id" },
+            { data: "username" },
+            { data: "first_name" },
+            { data: "last_name" },
+            { data: "gender" },
+            { data: "status" },
+        ]
+    });
+
+        // Individual column searching with text inputs
+        // $('.datatable-column-search-inputs tfoot td').not(':last-child')
+        $('.datatable-column-search-inputs tfoot td').each(function () {
+            var title = $('.datatable-column-search-inputs thead th').eq($(this).index()).text();
+            $(this).html('<input type="text" class="form-control input-sm" placeholder="Search '+title+'" />');
+        });
+        var table = $('.datatable-column-search-inputs').DataTable();
+        table.columns().every( function () {
+            var that = this;
+            $('input', this.footer()).on('keyup change', function () {
+                that.search(this.value).draw();
+            });
+        });
+
+        // Multiple rows selection
+        $('.datatable-selection-multiple').DataTable();
+        $('.datatable-selection-multiple tbody').on('click', 'tr', function() {
+            $(this).toggleClass('success');
+        });
+
+
+        // External table additions
+    // ------------------------------
+
+    // Enable Select2 select for the length option
+    /*$('.dataTables_length select').select2({
+    minimumResultsForSearch: Infinity,
+    width: 'auto'
+    });*/
+
+        // Enable Select2 select for individual column searching
+//        $('.filter-select').select2();
+
+    });
+</script>
     <script type="text/javascript" src="public/admin/assets/js/plugins/ui/ripple.min.js"></script>
     <!-- /theme JS files -->
 

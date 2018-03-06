@@ -1,4 +1,5 @@
 <?php
+
 class blog extends Controller {
     public function index($page=1)
     {
@@ -8,7 +9,9 @@ class blog extends Controller {
         $pagintion = $this->model->getuserlimit($start,$limit);
         $countpost = $this->model->countuser();
         $lastpage = ceil($countpost / $limit);
-        parent::view("blog/index",array('limit'=>$pagintion,'pageindex'=>$pageindex,'countpost'=>$lastpage));
+
+        $data = array('limit'=>$pagintion,'pageindex'=>$pageindex,'countpost'=>$lastpage);
+        parent::view("blog/index",$data);
     }
 
 }

@@ -1,5 +1,5 @@
 <?php
-//$model = new Model2();
+//$model = new Model();
 
 defined('DRIVER') or define('DRIVER','mysql');
 defined('HOST') or define('HOST','localhost');
